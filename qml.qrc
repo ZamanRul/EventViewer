@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Qml/Main.qml</file>
+        <file>Qml/Actions/OpenFileAction.qml</file>
+        <file>Qml/Actions/CloseApplicationAction.qml</file>
+        <file>Qml/Dialogs/OpenFileDialog.qml</file>
+        <file>Qml/Widgets/StatusBar.qml</file>
+        <file>Qml/Styles.qml</file>
+        <file>Qml/Widgets/FilterPane.qml</file>
+        <file>Qml/Widgets/TimeWindow.qml</file>
+        <file>Qml/Dialogs/AboutDialog.qml</file>
+        <file>Qml/Actions/AboutAction.qml</file>
+        <file>Icons/file.svg</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>Images/HeaderBackground.png</file>
+        <file>Qml/Widgets/EventTypesWindow.qml</file>
+        <file>Qml/Animations/FadeAnimation.qml</file>
+        <file>Icons/warning.svg</file>
+        <file>Qml/Widgets/HeaderMenuBar.qml</file>
+        <file>Icons/delete.svg</file>
+        <file>Icons/delete_highlighted.svg</file>
+        <file>Icons/select_all.png</file>
+        <file>Icons/deselect_all.png</file>
+        <file>Qml/Widgets/Chart/ChartLine.qml</file>
+        <file>Qml/Widgets/Chart/EventsChart.qml</file>
+        <file>Qml/Widgets/Others/FilterField.qml</file>
+        <file>Qml/Widgets/Others/Header.qml</file>
+        <file>Qml/Widgets/Others/IconButton.qml</file>
+        <file>Qml/Widgets/Events/EventDelegate.qml</file>
+        <file>Qml/Widgets/Events/EventsList.qml</file>
+    </qresource>
+</RCC>
