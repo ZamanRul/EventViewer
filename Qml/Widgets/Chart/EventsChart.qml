@@ -7,7 +7,8 @@ Rectangle {
     id: rootEventsChart
     objectName: "RootEventsCahrt"
 
-    property variant chartData: applicationModel.charts.eventsTimeline
+    property variant chartReferenceData: applicationModel.charts.eventsTimeline
+    property variant chartData: applicationModel.charts.filteredEventsTimeline
 
     property real timeWindowMinimum: 0.0        // value from 0.0 to 1.0
     property real timeWindowMaximum: 0.0        // value from 0.0 to 1.0
@@ -24,6 +25,22 @@ Rectangle {
         objectName: "EventChartShape"
 
         anchors.fill: parent
+
+        ChartLine {
+            id: chartReferencePath
+            objectName: "ChartReferencePath"
+
+            innerPadding: rootEventsChart.innerPadding
+
+            innerWidth: parent.width - 2 * rootEventsChart.innerPadding
+            innerHeight: rootEventsChart.height - rootEventsChart.innerPadding
+
+            startX: rootEventsChart.innerPadding
+
+            color: Style.chart.referenceLineColor
+
+            data: chartReferenceData
+        }
 
         ChartLine {
             id: chartPath

@@ -10,6 +10,8 @@ ProcessedData::ProcessedData() :
     m_data { },
     m_eventTypesOccurrences { },
     m_histogram { },
+    m_filteredHistogram { },
+    m_filteredEventTypes { },
     m_maximalEventType { 1 },
     m_minimalEpoch { 0 },
     m_maximalEpoch { 0 },
@@ -35,6 +37,8 @@ void ProcessedData::process( const QVector< Event* >& _events )
 
     findMaximalEventType();
 
+    m_filteredEventTypes.fill( true, m_maximalEventType + 1 );
+
     m_minimalEpoch = m_data.first()->epoch();
     m_currentMinimalEpoch = m_data.first()->epoch();
     m_maximalEpoch = m_data.last()->epoch();
@@ -46,6 +50,8 @@ void ProcessedData::process( const QVector< Event* >& _events )
     findEventTypeOccurencesInRange();
 
     findHistogram();
+
+    findFilteredHistogram();
 }
 
 void ProcessedData::setTimeWindow( qint64 _minimum, qint64 _maximum )
@@ -57,6 +63,27 @@ void ProcessedData::setTimeWindow( qint64 _minimum, qint64 _maximum )
     findMaximumEpochIndex();
 
     findEventTypeOccurencesInRange();
+}
+
+void ProcessedData::selectAll()
+{
+    m_filteredEventTypes.fill( true, m_maximalEventType + 1 );
+
+    findFilteredHistogram();
+}
+
+void ProcessedData::deselectAll()
+{
+    m_filteredEventTypes.fill( false, m_maximalEventType + 1 );
+
+    findFilteredHistogram();
+}
+
+void ProcessedData::setEventVisibility( qint32 _id, bool _value )
+{
+    m_filteredEventTypes[ _id ] = _value;
+
+    findFilteredHistogram();
 }
 
 const QVector< Event* >& ProcessedData::events() const
@@ -77,6 +104,11 @@ const QVector< qint32 >& ProcessedData::eventTypesOccurrences() const
 const QVector< double >& ProcessedData::histogram() const
 {
     return m_histogram;
+}
+
+const QVector< double >& ProcessedData::filteredHistogram() const
+{
+    return m_filteredHistogram;
 }
 
 qint64 ProcessedData::currentMinimum() const
@@ -119,6 +151,9 @@ void ProcessedData::clear()
 
     m_eventTypesOccurrences.clear();
     m_histogram.clear();
+    m_filteredHistogram.clear();
+
+    m_filteredEventTypes.clear();
 
     m_maximalEventType = 1;
     m_minimalEpoch = 0;
@@ -202,6 +237,61 @@ void ProcessedData::findHistogram()
 
     for( auto& segment : m_histogram )
         segment = 1.0 - ( segment / maxElement );
+}
+
+void ProcessedData::findFilteredHistogram()
+{
+    BENCHMARK( "ProcessedData::findFilteredHistogram()" )
+
+    const qint32 numberOfSegments = 100;
+
+    m_filteredHistogram.clear();
+    m_filteredHistogram.fill( 0, numberOfSegments );
+
+    QVector< double >::size_type i = 0;
+
+    double delta = ( m_maximalEpoch - m_minimalEpoch ) / static_cast< double >( numberOfSegments );
+
+    for ( const auto& event : m_data )
+    {
+        if ( !m_filteredEventTypes[ event->type() ] )
+            continue;
+
+        while ( i < numberOfSegments )
+        {
+            if ( event->epoch() >= ( ( i + 1 ) * delta + m_minimalEpoch ) )
+                ++i;
+            else
+                break;
+        }
+
+        if ( i >= numberOfSegments)
+        {
+            Q_ASSERT( event->epoch() >= ( ( i - 1 ) * delta + m_minimalEpoch ) );
+            Q_ASSERT( event->epoch() <= m_maximalEpoch );
+
+            ++m_filteredHistogram[ numberOfSegments - 1 ];
+        }
+        else
+        {
+            Q_ASSERT( event->epoch() >= ( i * delta + m_minimalEpoch ) );
+            Q_ASSERT( event->epoch() < ( ( i + 1 ) * delta + m_minimalEpoch ) );
+
+            ++m_filteredHistogram[ i ];
+        }
+    }
+
+    auto maxElement = *std::max_element( m_filteredHistogram.begin(), m_filteredHistogram.end() );
+
+    if ( qFuzzyCompare( maxElement, 0.0 ) )
+    {
+        m_filteredHistogram.fill( 1.0, numberOfSegments );
+    }
+    else
+    {
+        for( auto& segment : m_filteredHistogram )
+            segment = 1.0 - ( segment / maxElement );
+    }
 }
 
 void ProcessedData::findMinimumEpochIndex()

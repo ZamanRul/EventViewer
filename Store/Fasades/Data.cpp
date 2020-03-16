@@ -80,7 +80,21 @@ void Data::setTimeWindow( qint64 _minimum, qint64 _maximum )
 
 void Data::setEventVisibility( qint32 _id, bool _value )
 {
+    if ( m_eventsList.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Events list is empty";
+        return;
+    }
+
+    if ( m_processedData.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Processed data is empty";
+        return;
+    }
+
     m_eventsList->setEventVisibility( _id, _value );
+
+    m_processedData->setEventVisibility( _id, _value );
 }
 
 void Data::selectAll()
@@ -91,7 +105,15 @@ void Data::selectAll()
         return;
     }
 
+    if ( m_processedData.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Processed data is empty";
+        return;
+    }
+
     m_eventsList->selectAll();
+
+    m_processedData->selectAll();
 }
 
 void Data::deselectAll()
@@ -102,5 +124,13 @@ void Data::deselectAll()
         return;
     }
 
+    if ( m_processedData.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Processed data is empty";
+        return;
+    }
+
     m_eventsList->deselectAll();
+
+    m_processedData->deselectAll();
 }

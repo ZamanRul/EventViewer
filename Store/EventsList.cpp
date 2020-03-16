@@ -62,6 +62,9 @@ void EventsList::invalidateFilter()
 {
     BENCHMARK( "EventsList::invalidateFilter()" )
 
+    if ( m_events.isEmpty() )
+        return;
+
     beginResetModel();
 
     m_filteredEvents.clear();

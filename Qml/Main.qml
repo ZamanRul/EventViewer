@@ -25,7 +25,7 @@ ApplicationWindow  {
 
     menuBar: HeaderMenuBar { }
 
-    SplitView  {
+    SplitView {
         id: splitView
         objectName: "SplitView"
 

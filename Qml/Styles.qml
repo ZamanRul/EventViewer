@@ -76,6 +76,7 @@ QtObject {
         readonly property int innerPadding: 10
 
         readonly property color lineColor: "#e91e63"
+        readonly property color referenceLineColor: "#404040"
 
         readonly property color highlightColor: "#e91e63"
         readonly property real hightlightOpacity: 0.5

@@ -146,6 +146,8 @@ void MainStore::processFile( const QVariant& _result, const QString& _fileName, 
 
     m_charts->setEventsTimeline( m_data->processedData() );
 
+    m_charts->setFilteredEventsTimeline( m_data->processedData() );
+
     m_status->info( QString( QStringLiteral( "Loaded %1 event(s)" ) ).arg( m_data->affectedEvents() ) );
 
     m_status->setFileName( _fileName );
@@ -206,6 +208,8 @@ void MainStore::processFilterByEventType( qint32 _id, bool _value )
 
     m_filters->filterByEventType( _id, _value );
 
+    m_charts->setFilteredEventsTimeline( m_data->processedData() );
+
     m_status->info( QString { QStringLiteral( "Filtered %1 event(s)" ) }.arg( m_data->affectedEvents() ) );
 }
 
@@ -235,6 +239,8 @@ void MainStore::processFilterByEventTypeSelectAll()
 
     m_filters->filterByEventTypeSelectAll();
 
+    m_charts->setFilteredEventsTimeline( m_data->processedData() );
+
     m_status->info( QString { QStringLiteral( "Filtered %1 event(s)" ) }.arg( m_data->affectedEvents() ) );
 }
 
@@ -263,6 +269,8 @@ void MainStore::processFilterByEventTypeDeselectAll()
     m_data->deselectAll();
 
     m_filters->filterByEventTypeDeselectAll();
+
+    m_charts->setFilteredEventsTimeline( m_data->processedData() );
 
     m_status->info( QString { QStringLiteral( "Filtered %1 event(s)" ) }.arg( m_data->affectedEvents() ) );
 }

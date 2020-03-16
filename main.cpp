@@ -9,7 +9,6 @@
 #include "Dispatcher/ActionProvider.h"
 #include "Dispatcher/Dispatcher.h"
 
-
 void registerSingletons()
 {
     qmlRegisterSingletonType< ActionProvider >( "Flux", 1, 0, "ActionProvider",

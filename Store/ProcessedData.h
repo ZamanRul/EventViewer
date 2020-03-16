@@ -21,6 +21,12 @@ public:
     const QVector< Event* >& events() const;
     const QVector< qint32 >& eventTypesOccurrences() const;
     const QVector< double >& histogram() const;
+    const QVector< double >& filteredHistogram() const;
+
+    void selectAll();
+    void deselectAll();
+    void setEventVisibility( qint32 _id, bool _value );
+
 
     qint32 maximalEventType() const;
 
@@ -42,6 +48,8 @@ private:
 
     void findHistogram();
 
+    void findFilteredHistogram();
+
     void findMinimumEpochIndex();
 
     void findMaximumEpochIndex();
@@ -51,6 +59,9 @@ private:
     QVector< Event* > m_data;
     QVector< qint32 > m_eventTypesOccurrences;
     QVector< double > m_histogram;
+    QVector< double > m_filteredHistogram;
+
+    QVector< bool > m_filteredEventTypes;
 
     qint32 m_maximalEventType;
 
