@@ -14,11 +14,11 @@ public:
 
     ~ProcessedData();
 
-    void process( const QVector< Event* >& _events );
+    void process( const QVector< QSharedPointer< Event > >& _events );
 
     void setTimeWindow( qint64 _minimum, qint64 _maximum );
 
-    const QVector< Event* >& events() const;
+    const QVector< QSharedPointer< Event > >& events() const;
     const QVector< qint32 >& eventTypesOccurrences() const;
     const QVector< double >& histogram() const;
     const QVector< double >& filteredHistogram() const;
@@ -56,7 +56,7 @@ private:
 
 private:
 
-    QVector< Event* > m_data;
+    QVector< QSharedPointer< Event > > m_data;
     QVector< qint32 > m_eventTypesOccurrences;
     QVector< double > m_histogram;
     QVector< double > m_filteredHistogram;

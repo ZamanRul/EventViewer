@@ -4,6 +4,7 @@
 #include <QtGlobal>
 #include <QString>
 #include <QMetaType>
+#include <QSharedPointer>
 
 class Event
 {
@@ -43,5 +44,7 @@ private:
 };
 
 Q_DECLARE_METATYPE( Event* )
+
+Q_DECLARE_METATYPE( QSharedPointer< Event > )
 
 #endif // EVENT_H

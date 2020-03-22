@@ -40,7 +40,7 @@ public:
     GROUP_OPERATION setGroup( qint32 _id, char _value );
     void clearGroup( char _value );
 
-    const QVector< Event* >& events() const;
+    const QVector< QSharedPointer< Event > >& events() const;
 
     qint64 currentMinimum() const;
     qint64 currentMaximum() const;
@@ -67,8 +67,8 @@ protected:
 
 private:
 
-    QVector< Event* > m_events;
-    QVector< Event* > m_filteredEvents;
+    QVector< QSharedPointer< Event > > m_events;
+    QVector< QSharedPointer< Event > > m_filteredEvents;
 
     qint64 m_minimalDateEpoch;
     qint64 m_maximalDateEpoch;

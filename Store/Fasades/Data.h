@@ -32,7 +32,7 @@ public:
     qint32 groupACount() const;
     qint32 groupBCount() const;
 
-    void registerData( const QVector< Event* >& _events );
+    void registerData( const QVector< QSharedPointer< Event > >& _events );
     void setTimeWindow( qint64 _minimum, qint64 _maximum );
     void setEventVisibility( qint32 _id, bool _value );
     void selectAll();

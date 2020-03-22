@@ -142,11 +142,11 @@ void MainStore::processFile( const QVariant& _result, const QString& _fileName, 
 
     const QList< QVariant >& _events = _result.value< QList< QVariant > >();
 
-    QVector< Event* > events;
+    QVector< QSharedPointer< Event > > events;
     events.reserve( _events.size() );
 
     for ( const auto& event : _events )
-        events << event.value< Event* >();
+        events << event.value< QSharedPointer< Event > >();
 
     m_data->registerData( events );
 

@@ -36,7 +36,7 @@ EventFactory::~EventFactory()
     m_dictionary.clear();
 }
 
-Event* EventFactory::create( qint64 _epoch, qint32 _type, const QString& _target, const QString& _description )
+QSharedPointer< Event > EventFactory::create( qint64 _epoch, qint32 _type, const QString& _target, const QString& _description )
 {
     QString dateTimeString = epochToString( _epoch );
 
@@ -47,7 +47,7 @@ Event* EventFactory::create( qint64 _epoch, qint32 _type, const QString& _target
     if ( typeString.isEmpty() )
         typeString = QString { ( _type < QEvent::User ) ? QStringLiteral( "Undefined(%1)" ) : QStringLiteral( "User(%1)" ) }.arg( _type );
 
-    return new Event { _epoch, _type, registerString( _target ), registerString( _description ), registerString( dateTimeString ), registerString( typeString ) };
+    return QSharedPointer< Event > { new Event { _epoch, _type, registerString( _target ), registerString( _description ), registerString( dateTimeString ), registerString( typeString ) } };
 }
 
 QString EventFactory::registerString( const QString& _value )

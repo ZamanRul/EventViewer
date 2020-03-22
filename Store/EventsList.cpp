@@ -69,7 +69,7 @@ void EventsList::invalidateFilter()
 
     m_filteredEvents.clear();
 
-    Event* event = nullptr;
+    QSharedPointer< Event > event = nullptr;
 
     for ( qint64 i = m_currentMinimalEpochIndex; i <= m_currentMaximalEpochIndex; ++i )
     {
@@ -113,7 +113,7 @@ QVariant EventsList::data( const QModelIndex& _index, int _role ) const
         return QVariant { };
 }
 
-const QVector< Event* >& EventsList::events() const
+const QVector< QSharedPointer< Event > >& EventsList::events() const
 {
     return m_events;
 }

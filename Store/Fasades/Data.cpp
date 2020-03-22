@@ -50,7 +50,7 @@ qint32 Data::groupBCount() const
     return m_groupBCount;
 }
 
-void Data::registerData( const QVector< Event* >& _events )
+void Data::registerData( const QVector< QSharedPointer< Event > >& _events )
 {
     if ( m_eventsList.isNull() )
     {

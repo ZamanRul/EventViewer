@@ -16,7 +16,7 @@ public:
 
     ~EventFactory();
 
-    Event* create( qint64 _epoch, qint32 _type, const QString& _target, const QString& _description );
+    QSharedPointer< Event > create( qint64 _epoch, qint32 _type, const QString& _target, const QString& _description );
 
     void clear();
 

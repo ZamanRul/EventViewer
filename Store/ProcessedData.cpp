@@ -26,7 +26,7 @@ ProcessedData::~ProcessedData()
     clear();
 }
 
-void ProcessedData::process( const QVector< Event* >& _events )
+void ProcessedData::process( const QVector< QSharedPointer< Event > >& _events )
 {
     clear();
 
@@ -86,7 +86,7 @@ void ProcessedData::setEventVisibility( qint32 _id, bool _value )
     findFilteredHistogram();
 }
 
-const QVector< Event* >& ProcessedData::events() const
+const QVector< QSharedPointer< Event > >& ProcessedData::events() const
 {
     return m_data;
 }
@@ -145,7 +145,6 @@ void ProcessedData::clear()
 {
     if ( !m_data.isEmpty() )
     {
-        qDeleteAll( m_data );
         m_data.clear();
     }
 
@@ -164,7 +163,7 @@ void ProcessedData::clear()
 
 void ProcessedData::findMaximalEventType()
 {
-    auto element = *std::max_element( m_data.begin(), m_data.end(), []( Event* _leftEvent, Event* _rightEvent )
+    auto element = *std::max_element( m_data.begin(), m_data.end(), []( QSharedPointer< Event > _leftEvent, QSharedPointer< Event > _rightEvent )
     {
         return _leftEvent->type() < _rightEvent->type();
     } );
@@ -299,8 +298,8 @@ void ProcessedData::findMinimumEpochIndex()
     int step = 0;
     int count = m_data.size();
 
-    QVector< Event* >::iterator it;
-    QVector< Event* >::iterator first = m_data.begin();
+    QVector< QSharedPointer< Event > >::iterator it;
+    QVector< QSharedPointer< Event > >::iterator first = m_data.begin();
 
     while ( count > 0 )
     {
@@ -326,8 +325,8 @@ void ProcessedData::findMaximumEpochIndex()
     int step = 0;
     int count = m_data.size();
 
-    QVector< Event* >::iterator it;
-    QVector< Event* >::iterator first = m_data.begin();
+    QVector< QSharedPointer< Event > >::iterator it;
+    QVector< QSharedPointer< Event > >::iterator first = m_data.begin();
 
     while ( count > 0 )
     {
