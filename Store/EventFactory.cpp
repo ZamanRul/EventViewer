@@ -20,7 +20,7 @@ namespace
         char buffer[ 100 ];
         std::strftime( buffer, sizeof( buffer ), "%T.%%1\n%e/%m/%C", std::localtime( &resultTime ) );
 
-        return QString {  buffer }.arg( ms.count() % 1000 );
+        return QString { buffer }.arg( ms.count() % 1000 );
     }
 }
 
@@ -56,7 +56,7 @@ QString EventFactory::registerString( const QString& _value )
     if ( it != m_dictionary.end() )
         return *it;
     else
-        return *m_dictionary.insert( _value ).first;
+        return *m_dictionary.insert( _value );
 }
 
 void EventFactory::clear()

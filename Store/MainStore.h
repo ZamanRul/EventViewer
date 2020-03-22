@@ -62,6 +62,9 @@ private:
 
     void processfilterEventTypeName( const QString& _value );
 
+    void processAddToGroup( qint32 _id, char _value );
+    void processClearGroup( char _value );
+
 private:
 
     QSharedPointer< Status > m_status;

@@ -3,7 +3,7 @@
 
 #include "Event.h"
 
-#include <unordered_set>
+#include <QSet>
 
 class EventFactory
 {
@@ -32,7 +32,7 @@ private:
 
 private:
 
-    std::unordered_set< QString > m_dictionary;
+    QSet< QString > m_dictionary;
 };
 
 #endif // EVENTFACTORY_H

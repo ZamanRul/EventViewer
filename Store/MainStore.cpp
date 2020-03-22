@@ -60,8 +60,16 @@ void MainStore::process( const QSharedPointer< Action >& _action )
             processFilterByEventTypeDeselectAll();
             break;
 
-        case ActionType::filterEventTypeName:
+        case ActionType::FilterEventTypeName:
             processfilterEventTypeName( _action->argument1< QString >() );
+            break;
+
+        case ActionType::AddToGroup:
+            processAddToGroup( _action->argument1< qint32 >(), _action->argument2< char >() );
+            break;
+
+        case ActionType::ClearGroup:
+            processClearGroup( _action->argument1< char >() );
             break;
 
         default:
@@ -286,6 +294,28 @@ void MainStore::processfilterEventTypeName( const QString& _value )
     }
 
     m_filters->filterEventTypeNames( _value );
+}
+
+void MainStore::processAddToGroup( qint32 _id, char _value )
+{
+    if ( m_data.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Data facade is empty";
+        return;
+    }
+
+    m_data->setGroup( _id, _value );
+}
+
+void MainStore::processClearGroup( char _value )
+{
+    if ( m_data.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Data facade is empty";
+        return;
+    }
+
+    m_data->clearGroup( _value );
 }
 
 QObject* MainStore::status() const

@@ -6,7 +6,8 @@ Event::Event( qint64 _epoch, qint32 _type, const QString& _target, const QString
     m_type { _type },
     m_typeString { _typeString },
     m_target { _target },
-    m_description { _description }
+    m_description { _description },
+    m_group { ' ' }
 {}
 
 qint64 Event::epoch() const
@@ -37,4 +38,21 @@ QString Event::target() const
 QString Event::description() const
 {
     return m_description;
+}
+
+char Event::group() const
+{
+    return m_group;
+}
+
+void Event::setGroup( char _value )
+{
+    if ( m_group != _value )
+    {
+        m_group = _value;
+    }
+    else
+    {
+        m_group = ' ';
+    }
 }

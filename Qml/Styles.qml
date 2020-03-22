@@ -3,6 +3,26 @@ pragma Singleton
 import QtQuick 2.0
 
 QtObject {
+
+    readonly property QtObject application: QtObject
+    {
+        readonly property int minimalHeight: 600
+        readonly property int minimalWidth: 1024
+    }
+
+    readonly property QtObject groupStatus: QtObject
+    {
+        readonly property int width: 200
+        readonly property color hoverColor: "#AF164C"
+
+        readonly property int iconLeftMargin: 2
+        readonly property int iconTopMargin: 4
+
+        readonly property int iconSize: 18
+
+        readonly property int textLeftMargin: 2
+    }
+
     readonly property QtObject statusBar: QtObject
     {
         readonly property int height: 25
@@ -19,6 +39,8 @@ QtObject {
 
         readonly property int statusMessageLeftPadding: 25
         readonly property color statusMessageColor: "white"
+
+        readonly property int fileNameWidth: 250
 
         readonly property int fileIconLeftPadding: 6
         readonly property int fileIconTopPadding: 7
@@ -63,10 +85,13 @@ QtObject {
         readonly property int fontSize: 16
         readonly property color fontColor: "white"
 
+        readonly property int groupIconSize: 32
+
+        readonly property real column0Aspect: 0.05
         readonly property real column1Aspect: 0.15
         readonly property real column2Aspect: 0.20
         readonly property real column3Aspect: 0.30
-        readonly property real column4Aspect: 0.35
+        readonly property real column4Aspect: 0.30
     }
 
     readonly property QtObject chart: QtObject

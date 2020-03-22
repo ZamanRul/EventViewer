@@ -9,7 +9,8 @@ enum EventsListRoles {
     TypeIdRole,
     TypeRole,
     TargetRole,
-    DescriptionRole
+    DescriptionRole,
+    GroupRole
 };
 
 enum EventTypesRoles {

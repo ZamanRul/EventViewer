@@ -13,6 +13,8 @@ class Data: public QObject
 
     Q_PROPERTY(bool noData READ noData NOTIFY noDataChanged)    
     Q_PROPERTY(QObject* eventsList READ eventsList NOTIFY eventsListChanged)
+    Q_PROPERTY(qint32 groupACount READ groupACount NOTIFY groupACountChanged)
+    Q_PROPERTY(qint32 groupBCount READ groupBCount NOTIFY groupBCountChanged)
 
 public:
 
@@ -27,16 +29,24 @@ public:
 
     QSharedPointer< ProcessedData > processedData();
 
+    qint32 groupACount() const;
+    qint32 groupBCount() const;
+
     void registerData( const QVector< Event* >& _events );
     void setTimeWindow( qint64 _minimum, qint64 _maximum );
     void setEventVisibility( qint32 _id, bool _value );
     void selectAll();
     void deselectAll();
 
+    void setGroup( qint32 _id, char _value );
+    void clearGroup( char _value );
+
 signals:
 
     void noDataChanged();
     void eventsListChanged();
+    void groupACountChanged();
+    void groupBCountChanged();
 
 private:
 
@@ -44,6 +54,9 @@ private:
 
     QSharedPointer< EventsList > m_eventsList;
     QSharedPointer< ProcessedData > m_processedData;
+
+    qint32 m_groupACount;
+    qint32 m_groupBCount;
 };
 
 #endif // DATA_H

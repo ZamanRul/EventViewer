@@ -25,6 +25,9 @@ public:
     QString target() const;
     QString description() const;
 
+    char group() const;
+    void setGroup( char _value );
+
 private:
 
     qint64 m_epoch;
@@ -35,6 +38,8 @@ private:
 
     QString m_target;
     QString m_description;
+
+    char m_group;
 };
 
 Q_DECLARE_METATYPE( Event* )

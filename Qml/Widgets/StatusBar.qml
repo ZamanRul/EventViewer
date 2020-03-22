@@ -5,6 +5,7 @@ import Style 1.0
 import Flux 1.0
 
 import "../Animations"
+import "./Others"
 
 Item {
     id: rootStatusBar
@@ -53,8 +54,11 @@ Item {
 
         anchors.left: parent.left
         anchors.leftMargin: Style.statusBar.statusMessageLeftPadding
+        anchors.right: groupAStatus.left
 
         height: parent.height
+
+        elide: Text.ElideRight
 
         color: Style.statusBar.statusMessageColor
 
@@ -66,6 +70,32 @@ Item {
         Behavior on text { FadeAnimation { target: statusBarMessage } }
     }
 
+    GroupStatus {
+        id: groupAStatus
+        objectName: "GroupAStatus"
+
+        anchors.right: groupBStatus.left
+
+        icon: "qrc:/Icons/a_white.svg"
+
+        groupId: 65
+
+        count: applicationModel.data.groupACount
+    }
+
+    GroupStatus {
+        id: groupBStatus
+        objectName: "GroupBStatus"
+
+        anchors.right: loadedFilename.left
+
+        icon: "qrc:/Icons/b_white.svg"
+
+        groupId: 66
+
+        count: applicationModel.data.groupBCount
+    }
+
     Item {
         id: loadedFilename
         objectName: "LoadedFilename"
@@ -75,6 +105,9 @@ Item {
         anchors.right: parent.right
 
         height: parent.height
+        width: Style.statusBar.fileNameWidth
+
+        clip: true
 
         Image {
             id: fileIcon
@@ -105,6 +138,7 @@ Item {
 
             height: parent.height
 
+            elide: Text.ElideRight
             color: Style.statusBar.fileNameFontColor
 
             verticalAlignment: Text.AlignVCenter

@@ -53,5 +53,15 @@ void ActionProvider::filterByEventTypeDeselectAll()
 
 void ActionProvider::filterEventTypeName( const QString& _value )
 {
-    Dispatcher::instance().dispatch( QSharedPointer< Action >( new Action( ActionType::filterEventTypeName, _value ) ) );
+    Dispatcher::instance().dispatch( QSharedPointer< Action >( new Action( ActionType::FilterEventTypeName, _value ) ) );
+}
+
+void ActionProvider::addToGroup( qint32 _id, char _value )
+{
+    Dispatcher::instance().dispatch( QSharedPointer< Action >( new Action( ActionType::AddToGroup, _id, _value ) ) );
+}
+
+void ActionProvider::clearGroup( char _value )
+{
+    Dispatcher::instance().dispatch( QSharedPointer< Action >( new Action( ActionType::ClearGroup, _value ) ) );
 }

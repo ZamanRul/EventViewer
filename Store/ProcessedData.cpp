@@ -167,7 +167,7 @@ void ProcessedData::findMaximalEventType()
     auto element = *std::max_element( m_data.begin(), m_data.end(), []( Event* _leftEvent, Event* _rightEvent )
     {
         return _leftEvent->type() < _rightEvent->type();
-    });
+    } );
 
     m_maximalEventType = element->type();
 }

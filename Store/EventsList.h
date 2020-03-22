@@ -17,6 +17,10 @@ class EventsList : public QAbstractListModel
 
 public:
 
+    enum class GROUP_OPERATION : quint16 { INVALID, INC_A, INC_B, INC_A_DEC_B, INC_B_DEC_A, DEC_A, DEC_B };
+
+public:
+
     EventsList( QObject* _parent = nullptr );
 
     ~EventsList() override;
@@ -32,6 +36,9 @@ public:
 
     void selectAll();
     void deselectAll();
+
+    GROUP_OPERATION setGroup( qint32 _id, char _value );
+    void clearGroup( char _value );
 
     const QVector< Event* >& events() const;
 

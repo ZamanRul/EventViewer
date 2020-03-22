@@ -107,6 +107,8 @@ QVariant EventsList::data( const QModelIndex& _index, int _role ) const
         return m_filteredEvents[ _index.row() ]->target();
     else if ( _role == EventsListRoles::DescriptionRole )
         return m_filteredEvents[ _index.row() ]->description();
+    else if ( _role == EventsListRoles::GroupRole )
+        return m_filteredEvents[ _index.row() ]->group();
     else
         return QVariant { };
 }
@@ -126,6 +128,7 @@ QHash< int, QByteArray > EventsList::roleNames() const
     roles[ EventsListRoles::TypeRole ] = "type";
     roles[ EventsListRoles::TargetRole ] = "target";
     roles[ EventsListRoles::DescriptionRole ] = "description";
+    roles[ EventsListRoles::GroupRole ] = "group";
 
     return roles;
 }
@@ -164,6 +167,47 @@ void EventsList::deselectAll()
     m_eventsTypeMask.fill( false );
 
     invalidateFilter();
+}
+
+EventsList::GROUP_OPERATION EventsList::setGroup( qint32 _id, char _value )
+{
+    if ( _id < 0 || _id >= m_filteredEvents.size() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Cannot invoke setGroup() on this element (index = " << _id << ")";
+        return GROUP_OPERATION::INVALID;
+    }
+
+    char previousGroup = m_filteredEvents[ _id ]->group();
+
+    m_filteredEvents[ _id ]->setGroup( _value );
+
+    QModelIndex index = createIndex( _id, 0 );
+    emit dataChanged( index, index );
+
+    if ( previousGroup == ' ' )
+    {
+        return ( _value == 'A' ) ? GROUP_OPERATION::INC_A : GROUP_OPERATION::INC_B;
+    }
+
+    if ( previousGroup == _value )
+    {
+        return ( _value == 'A' ) ? GROUP_OPERATION::DEC_A : GROUP_OPERATION::DEC_B;
+    }
+
+    return ( _value == 'A' ) ? GROUP_OPERATION::INC_A_DEC_B : GROUP_OPERATION::INC_B_DEC_A;
+}
+
+void EventsList::clearGroup( char _value )
+{
+    BENCHMARK( "EventsList::clearGroup()" )
+
+    for ( auto& event : m_filteredEvents )
+    {
+        if ( event->group() == _value )
+            event->setGroup( ' ' );
+    }
+
+    emit dataChanged( createIndex( 0, 0 ), createIndex( m_filteredEvents.size() - 1, 0 ) );
 }
 
 qint64 EventsList::currentMinimum() const

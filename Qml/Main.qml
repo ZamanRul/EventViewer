@@ -5,6 +5,8 @@ import QtQuick.Controls 2.14
 import QtQuick.Dialogs 1.3
 import QtQuick.Controls.Material 2.12
 
+import Style 1.0
+
 import "./Actions"
 import "./Dialogs"
 import "./Widgets"
@@ -16,6 +18,9 @@ ApplicationWindow  {
     visible: true
 
     visibility: Window.Maximized
+
+    minimumHeight: Style.application.minimalHeight
+    minimumWidth: Style.application.minimalWidth
 
     title: qsTr( "Events Viewer" )
 

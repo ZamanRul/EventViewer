@@ -12,7 +12,9 @@ enum class ActionType
     FilterByEventType,
     FilterByEventTypeSelectAll,
     FilterByEventTypeDeselectAll,
-    filterEventTypeName
+    FilterEventTypeName,
+    AddToGroup,
+    ClearGroup
 };
 
 #endif // ACTION_TYPES_H

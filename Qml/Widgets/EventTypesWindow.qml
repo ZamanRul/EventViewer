@@ -17,7 +17,7 @@ Item {
     focus: true
 
     Keys.onPressed: {
-        if ( event.matches(StandardKey.Find) )
+        if ( event.matches( StandardKey.Find ) )
         {
             showFilterField = !showFilterField;
         }
@@ -157,5 +157,17 @@ Item {
                 }
             }
         }
+    }
+
+    MouseArea {
+        id: eventTypesFocusReceiver
+        objectName: "EventTypesFocusReceiver"
+
+        anchors.fill: parent
+        propagateComposedEvents: true
+
+        onClicked: { rootEventTypesWindow.focus = true; mouse.accepted = false; }
+        onReleased: { rootEventTypesWindow.focus = true; mouse.accepted = false; }
+        onPressed: { rootEventTypesWindow.focus = true; mouse.accepted = false; }
     }
 }

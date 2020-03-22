@@ -28,5 +28,10 @@
         <file>Qml/Widgets/Others/IconButton.qml</file>
         <file>Qml/Widgets/Events/EventDelegate.qml</file>
         <file>Qml/Widgets/Events/EventsList.qml</file>
+        <file>Icons/a_purple.svg</file>
+        <file>Icons/b_purple.svg</file>
+        <file>Icons/a_white.svg</file>
+        <file>Icons/b_white.svg</file>
+        <file>Qml/Widgets/Others/GroupStatus.qml</file>
     </qresource>
 </RCC>

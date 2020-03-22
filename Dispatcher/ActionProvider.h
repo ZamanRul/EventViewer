@@ -28,6 +28,9 @@ public:
 
     Q_INVOKABLE void filterEventTypeName( const QString& _value );
 
+    Q_INVOKABLE void addToGroup( qint32 _id, char _value );
+    Q_INVOKABLE void clearGroup( char _value );
+
 private:
 
     ActionProvider() = default;

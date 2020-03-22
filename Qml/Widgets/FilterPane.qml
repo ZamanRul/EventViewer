@@ -9,6 +9,8 @@ Item {
         id: filterPaneColumn
         objectName: "FilterPaneColumn"
 
+        anchors.fill: parent
+
         height: parent.height
         width: parent.width
 
