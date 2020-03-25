@@ -20,6 +20,7 @@ public:
     Q_INVOKABLE void processFile( QVariant _data, const QString& _fileName, bool _error = false );
 
     Q_INVOKABLE void showAboutDialog( bool _show );
+    Q_INVOKABLE void showCompareDialog( bool _show );
 
     Q_INVOKABLE void filterByTime( qint64 _minimum, qint64 _maximum );
     Q_INVOKABLE void filterByEventType( qint32 _id, bool _value );

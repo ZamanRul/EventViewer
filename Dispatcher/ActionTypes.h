@@ -5,6 +5,7 @@ enum class ActionType
 {
     ShowFileDialog,
     ShowAboutDialog,
+    ShowCompareDialog,
     OpenFile,
     RequestFile,
     ProcessFile,

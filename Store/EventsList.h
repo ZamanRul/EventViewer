@@ -37,6 +37,7 @@ public:
     void selectAll();
     void deselectAll();
 
+    QVector< QSharedPointer< Event > > group( char _group );
     GROUP_OPERATION setGroup( qint32 _id, char _value );
     void clearGroup( char _value );
 

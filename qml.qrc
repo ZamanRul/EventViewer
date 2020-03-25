@@ -33,5 +33,12 @@
         <file>Icons/a_white.svg</file>
         <file>Icons/b_white.svg</file>
         <file>Qml/Widgets/Others/GroupStatus.qml</file>
+        <file>Qml/Dialogs/CompareDialog.qml</file>
+        <file>Qml/Actions/OpenCompareAction.qml</file>
+        <file>Images/Lines.png</file>
+        <file>Qml/Widgets/Others/TableTextField.qml</file>
+        <file>Qml/Widgets/Comparison/ComparisonWidget.qml</file>
+        <file>Qml/Widgets/Comparison/ComparisonDelegate.qml</file>
+        <file>Qml/Widgets/Comparison/ComparisonHeader.qml</file>
     </qresource>
 </RCC>

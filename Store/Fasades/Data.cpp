@@ -50,6 +50,17 @@ qint32 Data::groupBCount() const
     return m_groupBCount;
 }
 
+QVector< QSharedPointer< Event > > Data::group( char _group )
+{
+    if ( m_eventsList.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Events list is empty";
+        return QVector< QSharedPointer< Event > > { };
+    }
+
+    return m_eventsList->group( _group );
+}
+
 void Data::registerData( const QVector< QSharedPointer< Event > >& _events )
 {
     if ( m_eventsList.isNull() )

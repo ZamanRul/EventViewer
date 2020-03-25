@@ -14,6 +14,12 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr( "&Comparisons" )
+
+        OpenCompareAction { }
+    }
+
+    Menu {
         title: qsTr( "&Help" )
 
         AboutAction { }

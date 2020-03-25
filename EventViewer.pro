@@ -18,11 +18,19 @@ SOURCES += \
         Dispatcher/ActionProvider.cpp \
         Dispatcher/Dispatcher.cpp \
         Middleware/FileManager.cpp \
+        Store/Comparisons/CompareEventsModel.cpp \
+        Store/Comparisons/CompareEventsRow.cpp \
+        Store/Comparisons/DiffEngine.cpp \
+        Store/Comparisons/DiffLine.cpp \
+        Store/Comparisons/DiffLineMatch.cpp \
+        Store/Comparisons/DiffLineStatistics.cpp \
+        Store/Comparisons/DiffSlice.cpp \
         Store/Event.cpp \
         Store/EventFactory.cpp \
         Store/EventTypes.cpp \
         Store/EventsList.cpp \
         Store/Fasades/Charts.cpp \
+        Store/Fasades/Comparison.cpp \
         Store/Fasades/Data.cpp \
         Store/Fasades/Dialog.cpp \
         Store/Fasades/Filters.cpp \
@@ -55,11 +63,20 @@ HEADERS += \
     Dispatcher/Dispatcher.h \
     Middleware/FileManager.h \
     Middleware/IMiddleware.h \
+    Store/Comparisons/CompareEventsModel.h \
+    Store/Comparisons/CompareEventsRow.h \
+    Store/Comparisons/ComparisonGlobals.h \
+    Store/Comparisons/DiffEngine.h \
+    Store/Comparisons/DiffLine.h \
+    Store/Comparisons/DiffLineMatch.h \
+    Store/Comparisons/DiffLineStatistics.h \
+    Store/Comparisons/DiffSlice.h \
     Store/Event.h \
     Store/EventFactory.h \
     Store/EventTypes.h \
     Store/EventsList.h \
     Store/Fasades/Charts.h \
+    Store/Fasades/Comparison.h \
     Store/Fasades/Data.h \
     Store/Fasades/Dialog.h \
     Store/Fasades/Filters.h \

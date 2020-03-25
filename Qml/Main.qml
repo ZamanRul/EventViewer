@@ -28,6 +28,8 @@ ApplicationWindow  {
 
     AboutDialog { }
 
+    CompareDialog { }
+
     menuBar: HeaderMenuBar { }
 
     SplitView {

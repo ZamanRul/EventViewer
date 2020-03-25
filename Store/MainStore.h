@@ -8,6 +8,7 @@
 #include "Fasades/Filters.h"
 #include "Fasades/Charts.h"
 #include "Fasades/Data.h"
+#include "Fasades/Comparison.h"
 
 #include <QObject>
 #include <QUrl>
@@ -24,6 +25,7 @@ class MainStore : public QObject, public IStore
     Q_PROPERTY(QObject* filters READ filters NOTIFY filtersGroupChanged)
     Q_PROPERTY(QObject* charts READ charts NOTIFY chartsGroupChanged)
     Q_PROPERTY(QObject* data READ data NOTIFY dataGroupChanged)
+    Q_PROPERTY(QObject* comparison READ comparison NOTIFY comparisonGroupChanged)
 
 public:
 
@@ -38,6 +40,7 @@ public:
     QObject* filters() const;
     QObject* charts() const;
     QObject* data() const;
+    QObject* comparison() const;
 
 signals:
 
@@ -46,14 +49,16 @@ signals:
     void filtersGroupChanged();
     void chartsGroupChanged();
     void dataGroupChanged();
+    void comparisonGroupChanged();
 
 private:
 
     void processOpenFileDialog( bool _value );
     void processFile( const QVariant& _events, const QString& _fileName, bool _errors );
+    void processRequestFile( const QUrl& _url );
 
     void processOpenAboutDialog( bool _value );
-    void processRequestFile( const QUrl& _url );
+    void processOpenCompareDialog( bool _value );
 
     void processFilterByTime( qint64 _minimum, qint64 _maximum );
     void processFilterByEventType( qint32 _id, bool _value );
@@ -72,6 +77,7 @@ private:
     QSharedPointer< Filters > m_filters;
     QSharedPointer< Charts > m_charts;
     QSharedPointer< Data > m_data;
+    QSharedPointer< Comparison > m_comparison;
 };
 
 #endif // MAINSTORE_H

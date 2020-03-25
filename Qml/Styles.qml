@@ -173,4 +173,69 @@ QtObject {
         readonly property int labelMargin: 10
         readonly property int labelHeight: 50
     }
+
+    readonly property QtObject tableTextField: QtObject
+    {
+        readonly property int fontSize: 16
+        readonly property color fontColor: "white"
+        readonly property color inactiveFontColor: "gray"
+    }
+
+    readonly property QtObject comparisonDelegate: QtObject
+    {
+        readonly property int height: 100
+
+        readonly property real leftGroupFill: 0.42
+        readonly property real typeGroupFill: 0.16
+        readonly property real rightGroupFill: 0.42
+
+        readonly property real leftTimeFieldFill: 0.3
+        readonly property real leftTargetFieldFill: 0.35
+        readonly property real leftDescriptionFill: 0.35
+
+        readonly property real rightTimeFieldFill: 0.3
+        readonly property real rightTargetFieldFill: 0.35
+        readonly property real rightDescriptionFill: 0.35
+
+        readonly property color evenBackgroundColor: "#343434"
+        readonly property color oddBackgroundColor: "#303030"
+
+        readonly property real typeGroupBackgroundOpacity: 0.1
+
+        readonly property int typeFontSize: 18
+
+        readonly property color borderColor: "#464646"
+        readonly property int borderSize: 1
+
+        readonly property color noDataBackgroundColor: "#303030"
+        readonly property color noDataTextColor: "#606060"
+        readonly property int noDataFontSize: 20
+    }
+
+    readonly property QtObject comparisonHeader: QtObject
+    {
+        readonly property int height: 50
+
+        readonly property color backgroundColor: "#303030"
+
+        readonly property real leftGroupHeaderFill: comparisonDelegate.leftGroupFill
+        readonly property real typeGroupHeaderFill: comparisonDelegate.typeGroupFill
+        readonly property real rightGroupHeaderFill: comparisonDelegate.rightGroupFill
+
+        readonly property color borderColor: "#464646"
+        readonly property int borderSize: 1
+
+        readonly property int fontSize: 20
+        readonly property color fontColor: "white"
+    }
+
+    readonly property QtObject compareDialog: QtObject
+    {
+        readonly property int padding: 0
+
+        readonly property color backgroundColor: "#343434"
+        readonly property int backgroundImageSize: 100
+
+        readonly property int closeButtonSize: 20
+    }
 }

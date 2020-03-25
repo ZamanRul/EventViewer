@@ -201,13 +201,26 @@ void EventsList::clearGroup( char _value )
 {
     BENCHMARK( "EventsList::clearGroup()" )
 
-    for ( auto& event : m_filteredEvents )
+    for ( auto& event : m_events )
     {
         if ( event->group() == _value )
             event->setGroup( ' ' );
     }
 
     emit dataChanged( createIndex( 0, 0 ), createIndex( m_filteredEvents.size() - 1, 0 ) );
+}
+
+QVector< QSharedPointer< Event > > EventsList::group( char _group )
+{
+    QVector< QSharedPointer< Event > > group;
+
+    for ( auto& event : m_filteredEvents )
+    {
+        if ( event->group() == _group )
+            group.push_back( event );
+    }
+
+    return group;
 }
 
 qint64 EventsList::currentMinimum() const

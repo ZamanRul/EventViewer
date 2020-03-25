@@ -31,6 +31,11 @@ void ActionProvider::showAboutDialog( bool _show )
     Dispatcher::instance().dispatch( QSharedPointer< Action >( new Action( ActionType::ShowAboutDialog, _show ) ) );
 }
 
+void ActionProvider::showCompareDialog( bool _show )
+{
+    Dispatcher::instance().dispatch( QSharedPointer< Action >( new Action( ActionType::ShowCompareDialog, _show ) ) );
+}
+
 void ActionProvider::filterByTime( qint64 _minimum, qint64 _maximum )
 {
     Dispatcher::instance().dispatch( QSharedPointer< Action >( new Action( ActionType::FilterByTime, _minimum, _maximum ) ) );

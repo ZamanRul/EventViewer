@@ -15,7 +15,8 @@ MainStore::MainStore() :
     m_dialog { new Dialog { } },
     m_filters { new Filters { } },
     m_charts { new Charts { } },
-    m_data { new Data { } }
+    m_data { new Data { } },
+    m_comparison { new Comparison { } }
 {}
 
 void MainStore::process( const QSharedPointer< Action >& _action )
@@ -34,6 +35,10 @@ void MainStore::process( const QSharedPointer< Action >& _action )
 
         case ActionType::ShowAboutDialog:
             processOpenAboutDialog( _action->argument1< bool >() );
+            break;
+
+        case ActionType::ShowCompareDialog:
+            processOpenCompareDialog( _action->argument1< bool >() );
             break;
 
         case ActionType::RequestFile:
@@ -97,6 +102,37 @@ void MainStore::processOpenAboutDialog( bool _value )
     }
 
     m_dialog->setShowAboutDialog( _value );
+}
+
+void MainStore::processOpenCompareDialog( bool _value )
+{
+    if ( m_dialog.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Dialog facade is empty";
+        return;
+    }
+
+    if ( m_comparison.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Comparison facade is empty";
+        return;
+    }
+
+    if ( m_data.isNull() )
+    {
+        qCritical().nospace().noquote() << "ERROR: Data facade is empty";
+        return;
+    }
+
+    if ( _value == true )
+    {
+        auto leftGroup = m_data->group( 'A' );
+        auto rightGroup = m_data->group( 'B' );
+
+        m_comparison->compare( leftGroup, rightGroup );
+    }
+
+    m_dialog->setShowCompareDialog( _value );
 }
 
 void MainStore::processRequestFile( const QUrl& _url )
@@ -342,3 +378,9 @@ QObject* MainStore::data() const
 {
     return m_data.get();
 }
+
+QObject* MainStore::comparison() const
+{
+    return m_comparison.get();
+}
+

@@ -21,4 +21,15 @@ enum EventTypesRoles {
     VisibleRole
 };
 
+enum CompareEventsRoles {
+    OperationTypeRole = Qt::UserRole + 1,
+    EventTypeRole,
+    TimeLeftRole,
+    TargetLeftRole,
+    DescriptionLeftRole,
+    TimeRightRole,
+    TargetRightRole,
+    DescriptionRightRole,
+};
+
 #endif // ROLES_H

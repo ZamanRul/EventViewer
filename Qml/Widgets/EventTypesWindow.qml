@@ -8,7 +8,7 @@ import Style 1.0
 
 Item {
     id: rootEventTypesWindow
-    objectName: "rootEventTypesWindow"
+    objectName: "RootEventTypesWindow"
 
     property bool showFilterField: false
 

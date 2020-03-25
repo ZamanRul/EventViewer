@@ -2,7 +2,8 @@
 
 Dialog::Dialog() :
     m_showOpenFileDialog { false },
-    m_showAboutDialog { false }
+    m_showAboutDialog { false },
+    m_showCompareDialog { false }
 {}
 
 bool Dialog::showFileDialog() const
@@ -13,6 +14,11 @@ bool Dialog::showFileDialog() const
 bool Dialog::showAboutDialog() const
 {
     return m_showAboutDialog;
+}
+
+bool Dialog::showCompareDialog() const
+{
+    return m_showCompareDialog;
 }
 
 void Dialog::setShowFileDialog( bool _value )
@@ -34,3 +40,14 @@ void Dialog::setShowAboutDialog( bool _value )
         emit showAboutDialogChanged();
     }
 }
+
+void Dialog::setShowCompareDialog( bool _value )
+{
+    if ( m_showCompareDialog != _value )
+    {
+        m_showCompareDialog = _value;
+
+        emit showCompareDialogChanged();
+    }
+}
+
