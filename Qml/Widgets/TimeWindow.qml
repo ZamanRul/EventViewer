@@ -26,7 +26,7 @@ Item {
 
         var date = new Date(0);
         date.setUTCMilliseconds(epoch);
-        var results = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + ":" + date.getMilliseconds() + "\n"
+        var results = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + ":" + ( '00' + date.getMilliseconds() ).slice( -3 ) + "\n"
                 + date.getDate() + "/" + ( date.getMonth() + 1 ) + "/" + date.getUTCFullYear();
 
         return results;

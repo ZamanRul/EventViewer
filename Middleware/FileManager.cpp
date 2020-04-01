@@ -4,6 +4,7 @@
 #include "Dispatcher/ActionProvider.h"
 #include "Store/Event.h"
 #include "Store/EventFactory.h"
+#include "Serialization/EventDeserializer.h"
 
 #include <QFile>
 #include <QDataStream>
@@ -52,44 +53,29 @@ QPair< QString, QVariant > FileManager::processOpenFile( const QUrl& _path )
 {
     BENCHMARK( "FileManager::processOpenFile()" )
 
-    QFile file( _path.toLocalFile() );
+    EventFactory::instance().clear();
 
-    if ( !file.open( QIODevice::ReadOnly ) )
+    QList< QVariant > events;
+    EventDeserializer deserializer;
+
+    auto result = deserializer.deserialize( _path, events );
+
+    if ( result == DESERIALIZATION_RESULT::CANNOT_OPEN_FILE )
     {
         qCritical().nospace().noquote() << "ERROR: Cannot open file '" << _path << "'";
         return qMakePair( _path.fileName(), QVariant { QString { QStringLiteral( "Cannot open file '%1'" ) }.arg( _path.fileName() ) } );
     }
 
-    QDataStream stream( &file );
-
-    const quint32 constantMagicNumber = 0xA0B0C0D1;
-
-    quint32 magicNumber = 0;
-    qint64 epoch = 0;
-    qint32 type = 0;
-    QString target;
-    QString description;
-
-    QList< QVariant > events;
-
-    stream >> magicNumber;
-
-    if ( magicNumber != constantMagicNumber )
+    if ( result == DESERIALIZATION_RESULT::INCORRECT_STAMP )
     {
         qCritical().nospace().noquote() << "ERROR: Requested file has incorrect header";
         return qMakePair( _path.fileName(), QVariant { QStringLiteral( "File has incorrect header" ) } );
     }
 
-    EventFactory::instance().clear();
-
-    while ( !stream.atEnd() )
+    if ( result == DESERIALIZATION_RESULT::INCORRECT_VERSION )
     {
-        stream >> epoch
-                >> type
-                >> target
-                >> description;
-
-        events.push_back( QVariant::fromValue( EventFactory::instance().create( epoch, type, target, description ) ) );
+        qCritical().nospace().noquote() << "ERROR: Requested file has incorrect version";
+        return qMakePair( _path.fileName(), QVariant { QStringLiteral( "File is in incorrect version" ) } );
     }
 
     return qMakePair( _path.fileName(), QVariant { events } );

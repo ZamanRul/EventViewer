@@ -18,6 +18,8 @@ SOURCES += \
         Dispatcher/ActionProvider.cpp \
         Dispatcher/Dispatcher.cpp \
         Middleware/FileManager.cpp \
+        Serialization/EventDeserializer.cpp \
+        Serialization/EventSerializer.cpp \
         Store/Comparisons/CompareEventsModel.cpp \
         Store/Comparisons/CompareEventsRow.cpp \
         Store/Comparisons/DiffEngine.cpp \
@@ -63,6 +65,8 @@ HEADERS += \
     Dispatcher/Dispatcher.h \
     Middleware/FileManager.h \
     Middleware/IMiddleware.h \
+    Serialization/EventDeserializer.h \
+    Serialization/EventSerializer.h \
     Store/Comparisons/CompareEventsModel.h \
     Store/Comparisons/CompareEventsRow.h \
     Store/Comparisons/ComparisonGlobals.h \
