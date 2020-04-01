@@ -59,7 +59,7 @@ Rectangle {
 
                 smooth: true
 
-                source: "qrc:/Icons/b_purple.svg"
+                source: "qrc:/Icons/b_teal.svg"
             }
         }
 

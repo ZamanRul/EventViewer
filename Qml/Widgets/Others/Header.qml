@@ -3,7 +3,7 @@ import QtQuick.Controls 2.14
 
 import Style 1.0
 
-Rectangle {
+Item {
     id: rootHeader
     objectName: "RootHeader"
 
@@ -11,8 +11,6 @@ Rectangle {
 
     height: Style.header.height
     width: parent.width
-
-    color: "transparent"
 
     Image {
         id: headerBackground

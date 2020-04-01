@@ -110,11 +110,8 @@ QVector< DiffLine > DiffEngine::diff( const DiffSlice& _slice )
 
         DiffSlice subslice { lineA, match->indexA() - 1, lineB, match->indexB() - 1 };
 
-        if ( !subslice.isEmpty() ) // THIS CONDITION IS WRONG ;(
-        {
-            QVector< DiffLine > sublines = diff( subslice );
-            lines.append( sublines );
-        }
+        QVector< DiffLine > sublines = diff( subslice );
+        lines.append( sublines );
 
         lines.push_back( DiffLine { COMPARISION_RESULT::EQUAL, match->indexA(), match->indexB() } );
 

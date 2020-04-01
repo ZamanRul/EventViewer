@@ -29,7 +29,6 @@
         <file>Qml/Widgets/Events/EventDelegate.qml</file>
         <file>Qml/Widgets/Events/EventsList.qml</file>
         <file>Icons/a_purple.svg</file>
-        <file>Icons/b_purple.svg</file>
         <file>Icons/a_white.svg</file>
         <file>Icons/b_white.svg</file>
         <file>Qml/Widgets/Others/GroupStatus.qml</file>
@@ -40,5 +39,6 @@
         <file>Qml/Widgets/Comparison/ComparisonWidget.qml</file>
         <file>Qml/Widgets/Comparison/ComparisonDelegate.qml</file>
         <file>Qml/Widgets/Comparison/ComparisonHeader.qml</file>
+        <file>Icons/b_teal.svg</file>
     </qresource>
 </RCC>

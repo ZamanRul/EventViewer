@@ -9,6 +9,8 @@ class DiffLine
 {
 public:
 
+    DiffLine() = default;
+
     DiffLine( COMPARISION_RESULT _result, qint32 _indexA, qint32 _indexB);
 
     COMPARISION_RESULT result() const;
